@@ -13,34 +13,31 @@
 
     body {
       background-color: #ffffff;
-      font-family: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
       padding: 0 1.5rem 3rem;
+      position: relative;
     }
 
     .top-right-note {
-      position: absolute;
-      top: 1rem;
-      right: 1.5rem;
-      font-family: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', sans-serif;
+      width: 100%;
+      max-width: 900px;
+      text-align: right;
+      padding-top: 1rem;
+      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', sans-serif;
       font-weight: 400;
       font-size: 0.9rem;
       color: #000000;
-      text-align: right;
       line-height: 1.5;
     }
 
     .top-right-note a {
       color: #000000;
       text-decoration: underline;
-    }
-
-    .top-right-note a:hover {
-      color: #555555;
     }
 
     .header-section {
@@ -52,7 +49,7 @@
     }
 
     .main-title {
-      font-family: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', sans-serif;
+      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', sans-serif;
       font-weight: 700;
       font-size: 3.2rem;
       color: #000000;
@@ -62,7 +59,7 @@
     }
 
     .sub-credit {
-      font-family: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', sans-serif;
+      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', sans-serif;
       font-weight: 400;
       font-size: 1.25rem;
       color: #000000;
@@ -70,7 +67,7 @@
     }
 
     .sub-text {
-      font-family: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', sans-serif;
+      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', sans-serif;
       font-weight: 400;
       font-size: 1.25rem;
       color: #000000;
@@ -93,7 +90,7 @@
     }
 
     .category-title {
-      font-family: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', sans-serif;
+      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', sans-serif;
       font-weight: 700;
       font-size: 1.3rem;
       color: #000000;
@@ -118,11 +115,11 @@
       border-radius: 8px;
       background-color: #fafafa;
       color: #333333;
-      font-family: 'Microsoft YaHei', '微软雅黑', 'PingFang SC', sans-serif;
+      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', sans-serif;
       font-size: 0.95rem;
       font-weight: 400;
       text-decoration: none;
-      transition: background-color 0.2s, border-color 0.2s;
+      transition: background-color 0.2s;
       word-break: break-word;
       min-height: 60px;
       cursor: pointer;
@@ -135,14 +132,12 @@
 
     @media (max-width: 550px) {
       .top-right-note {
-        position: static;
         text-align: center;
-        margin-bottom: 1rem;
         font-size: 0.8rem;
       }
 
       .header-section {
-        padding-top: 1rem;
+        padding-top: 1.5rem;
       }
 
       .main-title {
@@ -176,13 +171,13 @@
 </head>
 <body>
   <div class="top-right-note">
-    有需要怪物血量计算的可点这里：<a href="https://junltjunlt.github.io/HP-Calculator-JuNltJuNlt/" target="_blank">原/崩怪物血量计算工具 by くんりんてんか_q</a>
+    有需要怪物血量计算的可点这里：<a href="https://junltjunlt.github.io/HP-Calculator-JuNltJuNlt/" target="_blank" rel="noopener noreferrer">原/崩怪物血量计算工具 by くんりんてんか_q</a>
   </div>
 
   <div class="header-section">
     <h1 class="main-title">深境螺旋阵容查询</h1>
     <p class="sub-credit">整理/制图：@くんりんてんか_q</p>
-    <p class="sub-text">2026/7.11 10:38 更新了2.0、2.1、6.5B深渊 此前已有1.0、3.7、6.6、6.7深渊阵容</p>
+    <p class="sub-text">2026/7/11 10：59 对网站代码进行了兼容性更新 加入了2.0、2.1、6.5B深渊 此前已有1.0、3.7、6.6、6.7</p>
   </div>
 
   <div class="categories-wrapper" id="categoriesContainer"></div>
@@ -219,17 +214,17 @@
         }
       ];
 
-      let htmlString = '';
+      var htmlString = '';
 
-      for (let i = 0; i < categories.length; i++) {
-        const category = categories[i];
+      for (var i = 0; i < categories.length; i++) {
+        var category = categories[i];
         htmlString += '<div class="category-section">';
-        htmlString += `<div class="category-title">${category.name}</div>`;
+        htmlString += '<div class="category-title">' + category.name + '</div>';
         htmlString += '<div class="subsite-grid">';
 
-        for (let j = 0; j < category.sites.length; j++) {
-          const siteName = category.sites[j];
-          htmlString += `<a href="${siteName}.html" class="subsite-card">${siteName}</a>`;
+        for (var j = 0; j < category.sites.length; j++) {
+          var siteName = category.sites[j];
+          htmlString += '<a href="' + siteName + '.html" class="subsite-card">' + siteName + '</a>';
         }
 
         htmlString += '</div>';
